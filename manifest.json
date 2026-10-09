@@ -1,0 +1,51 @@
+{
+  "manifest_version": 3,
+  "name": "QA Test Steps Manager",
+  "version": "1.0.0",
+  "description": "Manuel web testleri için ekran görüntüsü ve açıklama yöneticisi. Adımları kaydedin, HTML raporu indirin.",
+
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "tabs",
+    "storage",
+    "unlimitedStorage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content_script.js"],
+      "run_at": "document_idle"
+    }
+  ],
+
+  "action": {
+    "default_title": "QA Test Steps Manager",
+    "default_icon": {
+      "16": "icons/16x16.png",
+      "32": "icons/32x32.png",
+      "128": "icons/128x128.png"
+    }
+  },
+
+  "icons": {
+    "16": "icons/16x16.png",
+    "32": "icons/32x32.png",
+    "128": "icons/128x128.png"
+  },
+
+  "web_accessible_resources": [
+    {
+      "resources": ["panel/*"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

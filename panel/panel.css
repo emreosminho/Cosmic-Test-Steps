@@ -1,0 +1,483 @@
+/* panel.css — CosmicDoc Theme */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Backgrounds */
+  --bg-primary:   #ffffff;
+  --bg-secondary: #faf9f8;
+  --bg-tertiary:  #f5f3f1;
+  --bg-hover:     #f5f3f1;
+  --bg-active:    #e8e3df;
+
+  /* Text */
+  --text-primary:   #2a2520;
+  --text-secondary: #6b5d52;
+  --text-tertiary:  #9a8a7d;
+
+  /* Borders */
+  --border-primary:   #e8e3df;
+  --border-secondary: #d4ccc4;
+
+  /* Shadows */
+  --shadow:    0 1px 2px rgba(101, 73, 54, 0.06);
+  --shadow-lg: 0 4px 6px rgba(101, 73, 54, 0.08);
+  --shadow-xl: 0 10px 15px -3px rgba(0,0,0,0.10), 0 4px 6px -2px rgba(0,0,0,0.05);
+
+  /* Accent / Status */
+  --accent:         #D07E47;
+  --accent-hover:   #c96d3d;
+  --accent-bg:      #fef5ed;
+  --success:        #88b87a;
+  --success-hover:  #76a668;
+  --success-bg:     #f0fdf4;
+  --error:          #d87575;
+  --error-hover:    #c96363;
+  --error-bg:       #fef2f2;
+  --warning:        #e89558;
+  --warning-hover:  #d88446;
+  --warning-bg:     #fef3c7;
+
+  /* Header */
+  --header-bg: #2a2520;
+  --header-fg: #ebe8ec;
+
+  /* Focus ring */
+  --focus-ring: rgba(208, 126, 71, 0.35);
+
+  --radius: 8px;
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font);
+  font-size: 13px;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Header ──────────────────────────────────────────────────────────────── */
+
+.header {
+  background: var(--header-bg);
+  color: var(--header-fg);
+  padding: 12px 14px 11px;
+  flex-shrink: 0;
+  user-select: none;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.header-title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 9px;
+  color: var(--header-fg);
+}
+
+.header-title svg {
+  color: var(--accent);
+}
+
+.title-text {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.btn-edit-title {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(235, 232, 236, 0.45);
+  padding: 2px 4px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: color 0.15s, background 0.15s;
+}
+
+.btn-edit-title:hover {
+  color: var(--accent);
+  background: rgba(208, 126, 71, 0.15);
+}
+
+.title-edit-input {
+  flex: 1;
+  min-width: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(208, 126, 71, 0.5);
+  border-radius: 4px;
+  color: var(--header-fg);
+  font-size: 13px;
+  font-weight: 700;
+  font-family: var(--font);
+  padding: 2px 6px;
+  outline: none;
+}
+
+.title-edit-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(208, 126, 71, 0.25);
+}
+
+.header-status {
+  font-size: 11px;
+  color: rgba(235, 232, 236, 0.45);
+  margin-bottom: 10px;
+  min-height: 14px;
+  line-height: 1.4;
+}
+
+.header-status.active {
+  color: var(--success);
+}
+
+/* ─── Toolbar ─────────────────────────────────────────────────────────────── */
+
+.toolbar {
+  display: flex;
+  gap: 6px;
+}
+
+.btn {
+  flex: 1 1 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 6px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: var(--font);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s, opacity 0.15s;
+  white-space: nowrap;
+  outline: none;
+}
+
+.btn:focus-visible {
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
+.btn:active { transform: scale(0.96); }
+
+.btn-capture {
+  background: var(--accent);
+  color: #fff;
+}
+.btn-capture:hover:not(:disabled) { background: var(--accent-hover); }
+
+.btn-finish {
+  background: var(--warning);
+  color: #fff;
+}
+.btn-finish:hover:not(:disabled) { background: var(--warning-hover); }
+
+.btn-clear {
+  background: var(--bg-active);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-secondary);
+}
+.btn-clear:hover:not(:disabled) {
+  background: var(--error-bg);
+  color: var(--error);
+  border-color: var(--error);
+}
+
+.btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* ─── Steps wrapper ───────────────────────────────────────────────────────── */
+
+.steps-wrapper {
+  flex: 1;
+  min-height: 0;        /* flexbox fix: allows overflow-y to kick in */
+  overflow-y: auto;
+  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.steps-wrapper::-webkit-scrollbar       { width: 4px; }
+.steps-wrapper::-webkit-scrollbar-track { background: transparent; }
+.steps-wrapper::-webkit-scrollbar-thumb {
+  background: var(--border-secondary);
+  border-radius: 10px;
+}
+
+/* ─── Empty state ─────────────────────────────────────────────────────────── */
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 48px 20px;
+  color: var(--text-tertiary);
+  text-align: center;
+  flex: 1;
+  flex-shrink: 0;
+}
+
+.empty-state svg { opacity: 0.4; }
+
+.empty-state p {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--text-tertiary);
+}
+
+/* ─── Step card ───────────────────────────────────────────────────────────── */
+
+.step-card {
+  background: var(--bg-primary);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-primary);
+  overflow: hidden;
+  animation: slideIn 0.2s ease;
+  flex-shrink: 0;  /* do not compress — let the wrapper scroll instead */
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(7px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.step-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 10px;
+  background: var(--bg-tertiary);
+  border-bottom: 1px solid var(--border-primary);
+  cursor: grab;
+  user-select: none;
+}
+
+.step-header:active {
+  cursor: grabbing;
+}
+
+.drag-handle {
+  color: var(--text-tertiary);
+  font-size: 14px;
+  line-height: 1;
+  flex-shrink: 0;
+  opacity: 0.55;
+  letter-spacing: -2px;
+}
+
+.step-header:hover .drag-handle {
+  opacity: 1;
+  color: var(--accent);
+}
+
+.step-number {
+  flex: 1;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.3px;
+}
+
+.step-card.is-dragging {
+  opacity: 0.45;
+  box-shadow: var(--shadow-xl);
+  border-color: var(--accent);
+}
+
+.step-timestamp {
+  font-size: 10px;
+  color: var(--text-tertiary);
+}
+
+.btn-delete {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-tertiary);
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-size: 15px;
+  line-height: 1;
+  transition: color 0.15s, background 0.15s;
+}
+.btn-delete:hover {
+  color: var(--error);
+  background: var(--error-bg);
+}
+
+.step-img-wrap {
+  background: var(--bg-tertiary);
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.step-img-wrap img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 160px;
+  object-fit: cover;
+  cursor: zoom-in;
+  transition: opacity 0.15s;
+}
+
+.step-img-wrap img:hover { opacity: 0.85; }
+
+/* ─── Lightbox ────────────────────────────────────────────────────────────── */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(42, 37, 32, 0.88);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+  animation: fadeIn 0.15s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.lightbox img {
+  max-width: 94vw;
+  max-height: 94vh;
+  border-radius: 6px;
+  box-shadow: var(--shadow-xl);
+}
+
+/* ─── Step description ────────────────────────────────────────────────────── */
+
+.step-description {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.step-description textarea {
+  width: 100%;
+  min-height: 52px;
+  resize: vertical;
+  border: 1px solid var(--border-primary);
+  border-radius: 5px;
+  padding: 6px 8px;
+  font-family: var(--font);
+  font-size: 12px;
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+  outline: none;
+  transition: border-color 0.15s, background 0.15s;
+  line-height: 1.5;
+}
+
+.step-description textarea:focus {
+  border-color: var(--accent);
+  background: var(--bg-primary);
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
+.step-description textarea::placeholder {
+  color: var(--text-tertiary);
+}
+
+/* ─── Capture flash ───────────────────────────────────────────────────────── */
+
+.capture-flash {
+  position: fixed;
+  inset: 0;
+  background: rgba(208, 126, 71, 0.18);
+  pointer-events: none;
+  animation: flash 0.35s ease forwards;
+  z-index: 9999;
+}
+
+@keyframes flash {
+  0%   { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* ─── Spinner ─────────────────────────────────────────────────────────────── */
+
+.spinner {
+  width: 13px;
+  height: 13px;
+  border: 2px solid rgba(255,255,255,0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ─── Toast ───────────────────────────────────────────────────────────────── */
+
+.toast {
+  position: fixed;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--header-bg);
+  color: var(--header-fg);
+  font-size: 11.5px;
+  padding: 7px 15px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: var(--shadow-xl);
+  white-space: nowrap;
+  z-index: 99998;
+  pointer-events: none;
+  animation: toastIn 0.2s ease, toastOut 0.3s ease 2.2s forwards;
+}
+
+@keyframes toastIn  {
+  from { opacity: 0; transform: translate(-50%, 10px); }
+  to   { opacity: 1; transform: translate(-50%, 0); }
+}
+@keyframes toastOut { from { opacity: 1; } to { opacity: 0; } }
+
+/* ─── Step count badge ────────────────────────────────────────────────────── */
+
+.step-count-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(208, 126, 71, 0.22);
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: 10px;
+  padding: 1px 7px;
+  min-width: 22px;
+  margin-left: 4px;
+}
